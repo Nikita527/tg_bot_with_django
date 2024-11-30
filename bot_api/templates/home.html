@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Добро пожаловать, {{ user.first_name }}!</h1>
+        <p>Вы успешно вошли в систему.</p>
+        <p><a href="{% url 'logout' %}" class="button">Выйти</a></p>
+    {% else %}
+        <h1>Добро пожаловать на наш сайт!</h1>
+        <p><a href="{% url 'login' %}" class="button">Войти через Telegram</a></p>
+    {% endif %}
+{% endblock %}

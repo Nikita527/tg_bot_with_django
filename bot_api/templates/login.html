@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Войти через Telegram{% endblock %}
+
+{% block content %}
+    <h1>Войти через Telegram</h1>
+    <p>Пожалуйста, нажмите на кнопку ниже, чтобы войти через Telegram:</p>
+    <p><a href="{{ telegram_link }}" class="button" target="_blank">Войти через Telegram</a></p>
+
+    <script>
+        let checkAuthInterval = setInterval(function(){
+            fetch('/check-auth/')
+            .then(response => response.json())
+            .then(data => {
+                if(data.is_authenticated){
+                    clearInterval(checkAuthInterval);
+                    window.location.href = '/';
+                }
+            });
+        }, 3000);
+    </script>
+{% endblock %}
